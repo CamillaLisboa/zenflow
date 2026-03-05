@@ -4,6 +4,7 @@ import { useAuth } from './hooks/useAuth'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 
 function ProtectedRoute({ children }) {
     const { currentUser, loading } = useAuth()
@@ -53,6 +54,14 @@ export default function App() {
                         element={
                             <PublicRoute>
                                 <RegisterPage />
+                            </PublicRoute>
+                        }
+                    />
+                    <Route
+                        path="/recuperar-senha"
+                        element={
+                            <PublicRoute>
+                                <ForgotPasswordPage />
                             </PublicRoute>
                         }
                     />
