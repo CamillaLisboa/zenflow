@@ -1,16 +1,11 @@
 import { useAuth } from '../hooks/useAuth'
-import { TrendingUp, LogOut, LayoutDashboard } from 'lucide-react'
+import { TrendingUp, LogOut } from 'lucide-react'
 import Button from '../components/ui/Button'
 import TransactionForm from '../components/transactions/TransactionForm'
 import TransactionList from '../components/transactions/TransactionList'
-import SummaryCards from '../components/dashboard/SummaryCards'
-import CategoryChart from '../components/dashboard/CategoryChart'
-import HistoryChart from '../components/dashboard/HistoryChart'
-import { useTransactions } from '../hooks/useTransactions'
 
 export default function DashboardPage() {
     const { currentUser, userProfile, logout } = useAuth()
-    const { totals } = useTransactions()
     const displayName = userProfile?.displayName || currentUser?.displayName || 'Usuário'
 
     return (
@@ -34,14 +29,11 @@ export default function DashboardPage() {
                 </div>
             </header>
             <main className="dashboard-main dashboard-layout">
-                <SummaryCards totals={totals} />
                 <div className="dashboard-content dashboard-grid">
                     <div className="dashboard-left-col">
                         <TransactionForm />
-                        <CategoryChart expensesByCategory={totals.expensesByCategory} />
                     </div>
                     <div className="dashboard-right-col">
-                        <HistoryChart history={totals.history} />
                         <TransactionList />
                     </div>
                 </div>
